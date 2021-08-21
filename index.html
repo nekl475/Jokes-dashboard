@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\style.min.css">
+    <link rel="stylesheet" href="css\norma.css">
+    <title>Random Joke</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="search">
+
+            <p class="search__title-text">MSI 2020</p>
+            <h1 class="search__title">Hey!</h1>
+            <h2 class="search__title-item">Let’s try to find a joke for you:</h2>
+            <form class="form__joke" id="formJoke">
+                <section>
+
+                    <label for="randomCategory">Random 
+                        <input type="radio" value="random" name="jokeType" id="randomCategory" checked>
+                        <span class ="internal"></span>
+                    </label>
+                </section>
+
+                <section class="categories">
+
+                    <label for="categoriesCategory">Categories
+                        <input type="radio" value="categories" name="jokeType" id="categoriesCategory">
+                        <span class ="internal"></span>
+                    </label>
+
+                    <div class="categories__list" id="categoriesList">
+
+                    </div>
+                </section>
+
+                <section>
+
+                    <label for="categoriesSearch"> Search
+                        <input type="radio" value="search" name="jokeType" id="categoriesSearch">
+                        <span class ="internal"></span>
+                    </label> <br>
+                    <input type="text" id="searchJoke">
+                </section>
+
+                <button>Get joke</button>
+
+            </form>
+            <div class="search__container" id="searchContainer">
+
+            </div>
+
+        </div>
+
+
+        <div class="favourite " id="jokeFave">
+            <p class="favourite__favs">Favourite</p>
+        </div>
+    </div>
+
+
+    <script src="js/script.js "></script>
+
+</body>
+
+</html>
