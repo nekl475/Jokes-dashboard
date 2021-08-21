@@ -50,6 +50,15 @@ const getCategories = () => {
 
 getCategories();
 
+const createName = (newFaw) => {
+
+    let head = document.createElement(`p`);
+    head.className = `favourite__favs`;
+    head.innerHTML += `Favourite`;
+    console.log(head);
+    newFaw.prepend(head);
+
+};
 
 const renderCategories = data => {
     let renderLI = data.map((cat, index) => {
@@ -141,6 +150,7 @@ class Form {
                 localJokes.splice(indexFavJ, 1);
                 this.setJokesLock(localJokes);
                 this.getFavJokes();
+                createName(newFaw);
             }else{
                 let jokeExist = localJokes.find(lockjoke => lockjoke.id === jokeData.id);
                 if(!jokeExist){
@@ -148,10 +158,7 @@ class Form {
                     this.setJokesLock(localJokes);
                     this.renderJoke(jokeData,newFaw, true);
                 }
-                 
-             
-               
-                   
+                      
             }
             
             
@@ -192,3 +199,4 @@ class Form {
 
 let JokeForm = new Form(form);
 JokeForm.getFavJokes();
+createName(newFaw);
