@@ -129,14 +129,15 @@ class Form {
     renderJoke(jokeData, container, favourite = false) {
 
             let jokeBlock = document.createElement(`div`);
-            jokeBlock.className = `joke__block`;
+            jokeBlock.className = `joke${favourite ? `__newblock`:`__block`}`;
 
             let favJokeLabel = document.createElement(`label`);
             favJokeLabel.for = `favJoke${jokeData.id}`;
 
             let favJokeLabelImg = document.createElement(`img`);
             favJokeLabelImg.src = `img/${favourite ? `heart.svg`:`Vector.svg`}`;
-        favJokeLabelImg.alt = `like`;
+            
+            favJokeLabelImg.alt = `like`;
 
         let favJokeLabelInput = document.createElement(`input`);
         favJokeLabelInput.type = `checkbox`;
@@ -148,21 +149,26 @@ class Form {
             if(favourite){
                 let indexFavJ = localJokes.findIndex(localJoke=> localJoke.id === jokeData.id);
                 localJokes.splice(indexFavJ, 1);
+                
                 this.setJokesLock(localJokes);
                 this.getFavJokes();
                 createName(newFaw);
             }else{
                 let jokeExist = localJokes.find(lockjoke => lockjoke.id === jokeData.id);
                 if(!jokeExist){
+                    favJokeLabelImg.src = `img/Vector.svg`;
                     localJokes.push(jokeData);
                     this.setJokesLock(localJokes);
                     this.renderJoke(jokeData,newFaw, true);
+                }else{
+                    favJokeLabelImg.src = `img/heart.svg`;
                 }
                       
             }
             
             
         });
+       
 
         favJokeLabel.append(favJokeLabelImg,favJokeLabelInput);
 
