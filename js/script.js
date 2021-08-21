@@ -55,7 +55,7 @@ const createName = (newFaw) => {
     let head = document.createElement(`p`);
     head.className = `favourite__favs`;
     head.innerHTML += `Favourite`;
-    console.log(head);
+
     newFaw.prepend(head);
 
 };
