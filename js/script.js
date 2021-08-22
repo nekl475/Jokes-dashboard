@@ -153,12 +153,9 @@ class Form {
             }else{
                 let jokeExist = localJokes.find(lockjoke => lockjoke.id === jokeData.id);
                 if(!jokeExist){
-                    favJokeLabelImg.src = `img/Vector.svg`;
                     localJokes.push(jokeData);
                     this.setJokesLock(localJokes);
                     this.renderJoke(jokeData,newFaw, true);
-                }else{
-                    favJokeLabelImg.src = `img/heart.svg`;
                 }
                       
             }
