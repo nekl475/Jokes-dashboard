@@ -136,20 +136,17 @@ class Form {
 
             let favJokeLabelImg = document.createElement(`img`);
             favJokeLabelImg.src = `img/${favourite ? `heart.svg`:`Vector.svg`}`;
-            
             favJokeLabelImg.alt = `like`;
 
         let favJokeLabelInput = document.createElement(`input`);
         favJokeLabelInput.type = `checkbox`;
         favJokeLabelInput.id = `favJoke${jokeData.id}`;
         favJokeLabelInput.className = `joke__block--heart`;
-
         favJokeLabelInput.addEventListener(`click`, () => {
             let localJokes = this.getJokesLock();
             if(favourite){
                 let indexFavJ = localJokes.findIndex(localJoke=> localJoke.id === jokeData.id);
                 localJokes.splice(indexFavJ, 1);
-                
                 this.setJokesLock(localJokes);
                 this.getFavJokes();
                 createName(newFaw);
