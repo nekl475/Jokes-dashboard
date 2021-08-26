@@ -7,8 +7,6 @@ const form = document.querySelector(`#formJoke`),
     DOMAIN = `https://api.chucknorris.io`,
     newFaw = document.querySelector(`#jokeFave`);
 
-
-
 jokeCategories.forEach(input => {
     input.addEventListener(`change`, () => {
 
@@ -118,11 +116,11 @@ class Form {
         });
     }
     setJokesLock(arr) {
-        localStorage.setItem(`favsJok`, JSON.stringify(arr));
+        window.localStorage.setItem(`favsJok`, JSON.stringify(arr));
     }
 
     getJokesLock() {
-        let favJokes = localStorage.getItem(`favsJok`);
+        let favJokes = window.localStorage.getItem(`favsJok`);
         return favJokes ? JSON.parse(favJokes) : new Array();
     }
 
@@ -142,7 +140,8 @@ class Form {
         favJokeLabelInput.type = `checkbox`;
         favJokeLabelInput.id = `favJoke${jokeData.id}`;
         favJokeLabelInput.className = `joke__block--heart`;
-        favJokeLabelInput.addEventListener(`click`, () => {
+
+        const favJoke = () => {
             let localJokes = this.getJokesLock();
             if(favourite){
                 let indexFavJ = localJokes.findIndex(localJoke=> localJoke.id === jokeData.id);
@@ -150,21 +149,38 @@ class Form {
                 this.setJokesLock(localJokes);
                 this.getFavJokes();
                 createName(newFaw);
+
+                let input = jokeContainer.querySelector(`#favJoke${jokeData.id}`);
+                if(input){
+                    let img = input.previousElementSibling;
+                    img.src = `img/Vector.svg`;
+                }
+
             }else{
                 let jokeExist = localJokes.find(lockjoke => lockjoke.id === jokeData.id);
                 if(!jokeExist){
                     localJokes.push(jokeData);
                     this.setJokesLock(localJokes);
                     this.renderJoke(jokeData,newFaw, true);
+
+                    let img = jokeContainer.querySelector(`#favJoke${jokeData.id}`).previousElementSibling;
+                    img.src = `img/heart.svg`;
                 }
                       
             }
-            
-            
-        });
-       
+        }
+
+        favJokeLabelInput.addEventListener(`click`, favJoke);
 
         favJokeLabel.append(favJokeLabelImg,favJokeLabelInput);
+
+        document.addEventListener(`click`, e=>{
+            e.stopPropagation();
+            if(e.target && e.target.className === `joke__withid`){
+                favJokeLabelInput.click();
+            }
+        });
+
 
         jokeBlock.innerHTML = `<br>
             <div class="joke__text">
